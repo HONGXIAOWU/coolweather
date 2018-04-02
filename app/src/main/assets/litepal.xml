@@ -1,0 +1,17 @@
+<litepal>
+    <dbname  value = "cool_weather"/>
+    <version value="1"/>
+
+    <list>
+        <mappin class="coolweather.com.coolweather.db.Province"/>
+        <mappin class="coolweather.com.coolweather.db.City"/>
+        <mappin class="coolweather.com.coolweather.db.County"/>
+
+
+
+
+    </list>
+
+
+
+</litepal>
