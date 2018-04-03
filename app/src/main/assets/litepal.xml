@@ -7,11 +7,5 @@
         <mappin class="coolweather.com.coolweather.db.City"/>
         <mappin class="coolweather.com.coolweather.db.County"/>
 
-
-
-
     </list>
-
-
-
 </litepal>
