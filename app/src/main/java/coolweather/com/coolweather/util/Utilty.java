@@ -31,6 +31,7 @@ public class Utilty {
                     province.setProvinceCode(provincesObject.getInt("id"));
                     province.save();//存储到数据库中
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -52,6 +53,8 @@ public class Utilty {
                     city.setProvinceId(provinceId);
                     city.save();
                 }
+
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -74,6 +77,7 @@ public class Utilty {
                     county.setCityId(cityId);
                     county.save();//保存在数据库中
                 }
+                return true;
             } catch (JSONException e) {
                 e.printStackTrace();
             }

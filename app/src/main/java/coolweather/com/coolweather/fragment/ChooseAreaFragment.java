@@ -101,15 +101,15 @@ public class ChooseAreaFragment extends Fragment {
             }
         });
 
-        queryProvinces();
+       queryProvinces();
     }
 
 
     private void queryProvinces(){
         titleView.setText("中国");
         backButton.setVisibility(View.GONE);
-        provinceList = DataSupport.findAll(Province.class);
-        //首先去数据库查询
+        provinceList =DataSupport.findAll(Province.class);
+       // 首先去数据库查询
         if(provinceList.size()>0){
             dataList.clear();
             for (Province province : provinceList){
@@ -121,7 +121,6 @@ public class ChooseAreaFragment extends Fragment {
         }else {
             //如果数据库没有就去服务器查询
             String address = "http://guolin.tech/api/china";
-
             ///去服务器查询数据
             queryService(address ,"province");
         }
@@ -132,7 +131,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCity(){
         titleView.setText(selectProvince.getProvinceName());//选中的省的名字
         backButton.setVisibility(View.VISIBLE);
-        cityList = DataSupport.where("provinceid = ?",String.valueOf(selectProvince.getId())).find(City.class);
+        cityList = DataSupport.where("provinceid=?",String.valueOf(selectProvince.getId())).find(City.class);
         if(cityList.size()>0){
             dataList.clear();
             for (City city:cityList){
@@ -167,7 +166,7 @@ public class ChooseAreaFragment extends Fragment {
         }else {
             int provinceCode = selectProvince.getProvinceCode();
             int cityCode= selectCity.getCityCode();
-            String address = "http://guolin.tech/api/china/"+provinceCode+cityCode;
+            String address = "http://guolin.tech/api/china/"+provinceCode+"/"+cityCode;
             queryService(address,"county");
         }
 
@@ -175,7 +174,7 @@ public class ChooseAreaFragment extends Fragment {
 
     private void queryService(String address , final String type){
         //显示进度
-        showProgressDialog();
+       // showProgressDialog();
         //请求服务器数据
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override

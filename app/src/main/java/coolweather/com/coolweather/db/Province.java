@@ -6,7 +6,7 @@ import org.litepal.crud.DataSupport;
  * Created by DELL on 2018/4/2.F:\CoolWeather\app\src\main\java\coolweather\com\coolweather\db\Province.java
  * F:\CoolWeather\app\src\main\java\coolweather\com\coolweather\db\Province.java
  * coolweather.com.coolweather.db.Province
- *
+ *coolweather.com.coolweather.db.Province
  */
 
 public class Province extends DataSupport {
