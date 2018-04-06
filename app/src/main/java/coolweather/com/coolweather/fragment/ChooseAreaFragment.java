@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import coolweather.com.coolweather.R;
+import coolweather.com.coolweather.activity.MainActivity;
 import coolweather.com.coolweather.activity.WeatherActivity;
 import coolweather.com.coolweather.db.City;
 import coolweather.com.coolweather.db.County;
@@ -90,10 +91,19 @@ public class ChooseAreaFragment extends Fragment {
                     queryCounties();
                 }else if(currentLevel==LEVEL_COUNTRY){
                     String weahtId = countyList.get(position).getWeatherId();
-                    Intent intent  = new Intent(getActivity(), WeatherActivity.class);
-                    intent.putExtra("weather_id",weahtId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    if(getActivity() instanceof MainActivity){
+                        Intent intent  = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id",weahtId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if(getActivity() instanceof WeatherActivity){
+                        WeatherActivity activity = (WeatherActivity)getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefreshLayout.setRefreshing(true);
+                        activity.requestWeather(weahtId);
+
+                    }
+
                 }
             }
         });

@@ -5,11 +5,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -31,7 +34,7 @@ import okhttp3.Response;
 
 public class WeatherActivity extends AppCompatActivity {
     private static final String TAG="WeatherActivity";
-    private SwipeRefreshLayout swipeRefreshLayout;
+    public SwipeRefreshLayout swipeRefreshLayout;
     private String mWeatherId;
     private ScrollView weahterLayout;
     private TextView titleCity;
@@ -45,6 +48,8 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView sportText;
     private LinearLayout forecastLayout;
     private ImageView bingPicImage;
+    private Button mNavButton;
+    public DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,14 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText =(TextView) findViewById(R.id.car_wash_text);
         sportText =(TextView) findViewById(R.id.sport_text);
         bingPicImage = (ImageView)findViewById(R.id.bing_pic_img);
+        mNavButton = (Button)findViewById(R.id.nav_button);
+        drawerLayout =(DrawerLayout)findViewById(R.id.drawer_layout);
+        mNavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
         SharedPreferences sharedPreferences  = PreferenceManager.getDefaultSharedPreferences(this);
         String bingPic = sharedPreferences.getString("bing_pic",null);
