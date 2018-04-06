@@ -2,6 +2,8 @@ package coolweather.com.coolweather.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import coolweather.com.coolweather.db.City;
 import coolweather.com.coolweather.db.County;
 import coolweather.com.coolweather.db.Province;
+import coolweather.com.coolweather.gson.Weather;
 
 /**
  * Created by DELL on 2018/4/3.
@@ -16,6 +19,19 @@ import coolweather.com.coolweather.db.Province;
 //解析省，市，区数据工具类
 
 public class Utilty {
+
+    //解析服务器返回的天气数据
+    public  static Weather handleWeatherResponse(String response){
+        try {
+            JSONObject jsonObject =  new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return  new Gson().fromJson(weatherContent,Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     //解析服务器返回的省级数据

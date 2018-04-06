@@ -1,6 +1,7 @@
 package coolweather.com.coolweather.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import coolweather.com.coolweather.R;
+import coolweather.com.coolweather.activity.WeatherActivity;
 import coolweather.com.coolweather.db.City;
 import coolweather.com.coolweather.db.County;
 import coolweather.com.coolweather.db.Province;
@@ -86,6 +88,12 @@ public class ChooseAreaFragment extends Fragment {
                     selectCity = cityList.get(position);
                     //接着查询区
                     queryCounties();
+                }else if(currentLevel==LEVEL_COUNTRY){
+                    String weahtId = countyList.get(position).getWeatherId();
+                    Intent intent  = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id",weahtId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
