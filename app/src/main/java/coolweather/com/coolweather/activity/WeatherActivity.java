@@ -1,5 +1,6 @@
 package coolweather.com.coolweather.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import coolweather.com.coolweather.R;
 import coolweather.com.coolweather.gson.Forecast;
 import coolweather.com.coolweather.gson.Weather;
+import coolweather.com.coolweather.service.UpdateWeatherService;
 import coolweather.com.coolweather.util.HttpUtil;
 import coolweather.com.coolweather.util.Utilty;
 import okhttp3.Call;
@@ -104,6 +106,8 @@ public class WeatherActivity extends AppCompatActivity {
             //String weatherId = getIntent().getStringExtra("weather_id");
             mWeatherId = getIntent().getStringExtra("weather_id");
             weahterLayout.setVisibility(View.INVISIBLE);
+            Intent intent = new Intent(this, UpdateWeatherService.class);
+            startService(intent);
             requestWeather(mWeatherId);
         }
 
